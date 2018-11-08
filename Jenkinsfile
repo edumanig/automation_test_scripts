@@ -22,7 +22,7 @@ pipeline {
             addHtmlBadge 'Run terraform acceptance test'
           }
         }
-        stage('') {
+        stage('error') {
           steps {
             build(job: 'tr-acceptance', propagate: true, quietPeriod: 10, wait: true)
           }
@@ -36,7 +36,7 @@ pipeline {
             addHtmlBadge 'Send reports'
           }
         }
-        stage('') {
+        stage('error') {
           steps {
             timestamps()
             slackSend(baseUrl: 'https://aviatrix.slack.com/services/hooks/jenkins-ci/', channel: '#terraform-acceptance', failOnError: true, teamDomain: 'aviatrix', token: 'zjC6JXcuigU1Nq0j3AoLBdci', message: 'Terraform Acceptance 4.0 - Passed')
